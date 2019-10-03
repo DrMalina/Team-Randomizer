@@ -16,28 +16,34 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddUsers = props => {
+const AddItems = props => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.handleInputSubmit(inputValue);
+
+    if (inputValue) {
+      props.handleInputSubmit(id, inputValue);
+      setInputValue("");
+    }
   };
 
   const classes = useStyles();
+
+  const { id, label, placeholder } = props;
+
   return (
-    <Grid container className={classes.root}>
-      <Grid
-        component="form"
-        xs={9}
-        item
-        style={{ paddingRight: "16px" }}
-        onSubmit={handleSubmit}
-      >
+    <Grid
+      container
+      className={classes.root}
+      component="form"
+      onSubmit={handleSubmit}
+    >
+      <Grid xs={9} item style={{ paddingRight: "16px" }}>
         <TextField
-          id="addUsers"
-          label="Add players"
-          placeholder="Hit enter to add a user"
+          id={id}
+          label={label}
+          placeholder={placeholder}
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           fullWidth
@@ -57,4 +63,4 @@ const AddUsers = props => {
   );
 };
 
-export default AddUsers;
+export default AddItems;

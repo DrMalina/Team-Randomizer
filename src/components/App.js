@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
+import { CssBaseline, Container, Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Header from "./Header";
 import StartingScreen from "./StartingScreen";
-import AddUsers from "./AddUsers";
-import UserList from "./UserList";
+import AddItems from "./AddItems";
+import ItemsList from "./ItemsList";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing(3)
+  },
   main: {
     marginTop: theme.spacing(10),
     display: "flex",
@@ -20,7 +23,17 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles();
   const [step, setStep] = useState(1);
-  const [users, setUser] = useState(["mac", "rob"]);
+  const [users, setUser] = useState([]);
+  const [teams, setTeams] = useState([
+    "FC Barcelona",
+    "Real Madrid",
+    "Liverpool",
+    "Manchester United",
+    "Manchester City",
+    "FC Bayern",
+    "Juventus",
+    "PSG"
+  ]);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -30,8 +43,38 @@ const App = () => {
     setStep(step - 1);
   };
 
-  const handleInputSubmit = element => {
-    setUser([...users, element]);
+  const handleInputSubmit = (id, element) => {
+    if (id == "userInput") {
+      setUser([...users, element]);
+    } else if (id == "teamInput") {
+      setTeams([...teams, element]);
+    }
+  };
+
+  const deleteItem = (id, index) => {
+    if (id == "users") {
+      setUser(users.filter((user, idx) => idx !== index));
+    } else if (id == "teams") {
+      setUser(teams.filter((team, idx) => idx !== index));
+    }
+  };
+
+  const clearAll = id => {
+    if (id == "users") {
+      setUser([]);
+    } else if (id == "teams") {
+      setTeams([]);
+    }
+  };
+
+  const unlockBtn = (items, btnDescription) => {
+    if (items.length >= 2) {
+      return (
+        <Button color="primary" variant="contained" onClick={() => nextStep()}>
+          {btnDescription}
+        </Button>
+      );
+    }
   };
 
   const renderContent = () => {
@@ -42,8 +85,59 @@ const App = () => {
       case 2:
         return (
           <>
-            <AddUsers handleInputSubmit={handleInputSubmit} />
-            <UserList users={users} />
+            <AddItems
+              handleInputSubmit={handleInputSubmit}
+              id="userInput"
+              label="Add Player"
+              placeholder="Type a name of a user"
+            />
+            <ItemsList
+              id="users"
+              items={users}
+              deleteItem={deleteItem}
+              clearAll={clearAll}
+            />
+            {unlockBtn(users, "next")}
+          </>
+        );
+
+      case 3:
+        return (
+          <>
+            <AddItems
+              handleInputSubmit={handleInputSubmit}
+              id="teamInput"
+              label="Add Team"
+              placeholder="Type a name of a team"
+            />
+            <ItemsList
+              id="teams"
+              items={teams}
+              deleteItem={deleteItem}
+              clearAll={clearAll}
+            />
+            <Grid container spacing={3}>
+              <Grid
+                item
+                xs={teams.length >= 2 ? "6" : "12"}
+                style={{ display: "flex", justifyContent: "flex-end" }}
+              >
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  onClick={() => prevStep()}
+                >
+                  Go back
+                </Button>
+              </Grid>
+              <Grid
+                item
+                xs={6}
+                style={{ display: "flex", justifyContent: "flex-start" }}
+              >
+                {unlockBtn(teams, "randomize")}
+              </Grid>
+            </Grid>
           </>
         );
     }
