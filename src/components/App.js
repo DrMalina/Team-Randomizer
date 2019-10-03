@@ -6,6 +6,7 @@ import Header from "./Header";
 import StartingScreen from "./StartingScreen";
 import AddItems from "./AddItems";
 import ItemsList from "./ItemsList";
+import ResultList from "./ResultList";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -140,6 +141,9 @@ const App = () => {
             </Grid>
           </>
         );
+
+      case 4:
+        return <ResultList users={users} teams={teams} />;
     }
   };
 
