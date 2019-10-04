@@ -23,6 +23,7 @@ const AddItems = props => {
     e.preventDefault();
 
     if (inputValue) {
+      // to prevent adding empty values
       props.handleInputSubmit(id, inputValue);
       setInputValue("");
     }

@@ -24,7 +24,7 @@ const Header = () => {
           noWrap
           className={classes.toolbarTitle}
         >
-          Fifa Randomizer
+          FIFA Randomizer
         </Typography>
       </Toolbar>
     </AppBar>

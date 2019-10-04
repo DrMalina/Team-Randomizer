@@ -24,24 +24,16 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles();
   const [step, setStep] = useState(1);
-  const [users, setUser] = useState([
-    "Maciek",
-    "Marcin",
-    "Rafał",
-    "Piotrek",
-    "Janek",
-    "Szymon",
-    "Artur"
-  ]);
+  const [users, setUser] = useState([]);
   const [teams, setTeam] = useState([
     "FC Barcelona",
     "Real Madrid",
     "Liverpool",
     "Manchester United",
     "Manchester City",
-    "FC Bayern"
-    /* "Juventus",
-    "PSG" */
+    "FC Bayern",
+    "Juventus",
+    "PSG"
   ]);
 
   const nextStep = () => {
@@ -90,7 +82,6 @@ const App = () => {
     switch (step) {
       case 1:
         return <StartingScreen nextStep={nextStep} />;
-
       case 2:
         return (
           <>
@@ -151,7 +142,9 @@ const App = () => {
         );
 
       case 4:
-        return <ResultList users={users} teams={teams} />;
+        return (
+          <ResultList users={users} teams={teams} onPrevClick={prevStep} />
+        );
     }
   };
 
