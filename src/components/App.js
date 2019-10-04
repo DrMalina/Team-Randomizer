@@ -151,7 +151,7 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Header />
+      <Header setStep={setStep} />
       <Container component="main" maxWidth="sm" className={classes.main}>
         {renderContent()}
       </Container>

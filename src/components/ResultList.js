@@ -75,7 +75,7 @@ const ResultList = props => {
       <Button
         color="secondary"
         variant="contained"
-        onClick={() => props.prevStep()}
+        onClick={() => props.onPrevClick()}
         style={{ maxWidth: "50%", alignSelf: "center", marginTop: "20px" }}
       >
         Go back

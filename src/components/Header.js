@@ -2,6 +2,7 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -10,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = () => {
+const Header = ({ setStep }) => {
   const classes = useStyles();
 
   return (
@@ -24,7 +25,15 @@ const Header = () => {
           noWrap
           className={classes.toolbarTitle}
         >
-          FIFA Randomizer
+          <Link
+            component="button"
+            variant="h6"
+            underline="none"
+            style={{ color: "white" }}
+            onClick={() => setStep(1)}
+          >
+            FIFA Randomizer
+          </Link>
         </Typography>
       </Toolbar>
     </AppBar>
