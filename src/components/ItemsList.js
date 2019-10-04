@@ -27,9 +27,9 @@ const ItemsList = props => {
     <>
       <List style={{ width: "90%", marginTop: "16px", marginBottom: "16px" }}>
         <Paper>
-          {props.items.map((user, idx) => (
+          {props.items.map((element, idx) => (
             <ListItem key={idx} style={{ padding: "16px" }} divider>
-              <ListItemText primary={user} />
+              <ListItemText primary={element} />
               <ListItemSecondaryAction>
                 <IconButton
                   edge="end"

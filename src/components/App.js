@@ -24,16 +24,24 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles();
   const [step, setStep] = useState(1);
-  const [users, setUser] = useState([]);
-  const [teams, setTeams] = useState([
+  const [users, setUser] = useState([
+    "Maciek",
+    "Marcin",
+    "Rafał",
+    "Piotrek",
+    "Janek",
+    "Szymon",
+    "Artur"
+  ]);
+  const [teams, setTeam] = useState([
     "FC Barcelona",
     "Real Madrid",
     "Liverpool",
     "Manchester United",
     "Manchester City",
-    "FC Bayern",
-    "Juventus",
-    "PSG"
+    "FC Bayern"
+    /* "Juventus",
+    "PSG" */
   ]);
 
   const nextStep = () => {
@@ -45,26 +53,26 @@ const App = () => {
   };
 
   const handleInputSubmit = (id, element) => {
-    if (id == "userInput") {
+    if (id === "userInput") {
       setUser([...users, element]);
-    } else if (id == "teamInput") {
-      setTeams([...teams, element]);
+    } else if (id === "teamInput") {
+      setTeam([...teams, element]);
     }
   };
 
   const deleteItem = (id, index) => {
-    if (id == "users") {
+    if (id === "users") {
       setUser(users.filter((user, idx) => idx !== index));
-    } else if (id == "teams") {
-      setUser(teams.filter((team, idx) => idx !== index));
+    } else if (id === "teams") {
+      setTeam(teams.filter((team, idx) => idx !== index));
     }
   };
 
   const clearAll = id => {
-    if (id == "users") {
+    if (id === "users") {
       setUser([]);
-    } else if (id == "teams") {
-      setTeams([]);
+    } else if (id === "teams") {
+      setTeam([]);
     }
   };
 
@@ -120,7 +128,7 @@ const App = () => {
             <Grid container spacing={3}>
               <Grid
                 item
-                xs={teams.length >= 2 ? "6" : "12"}
+                xs={teams.length >= 2 ? 6 : 12}
                 style={{ display: "flex", justifyContent: "flex-end" }}
               >
                 <Button
