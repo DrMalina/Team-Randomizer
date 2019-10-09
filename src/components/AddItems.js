@@ -22,7 +22,7 @@ const AddItems = ({ category, label, placeholder, handleInputSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (inputValue) {
+    if (inputValue && inputValue.length <= 25) {
       // to prevent adding empty values
       handleInputSubmit(category, inputValue);
       setInputValue("");

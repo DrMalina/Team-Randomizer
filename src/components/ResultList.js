@@ -12,7 +12,7 @@ const shuffle = array => {
 
 //Helper fn to match user and random team to create a pair
 const createPair = (usersArray, teamsArray) => {
-  // array of objects
+  // args: array of objects
   const users = shuffle(usersArray.map(element => element.user));
   const teams = shuffle(teamsArray.map(element => element.team));
 

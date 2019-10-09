@@ -74,6 +74,7 @@ const App = () => {
     }
   };
 
+  //unlock btn to go to the next step
   const unlockBtn = (items, btnDescription) => {
     if (items.length >= 2) {
       return (
@@ -103,7 +104,7 @@ const App = () => {
               deleteItem={deleteItem}
               clearAll={clearAll}
             />
-            {unlockBtn(users, "next")}
+            {unlockBtn(users, "next")} {/* Only one btn: continue */}
           </>
         );
 
@@ -123,6 +124,8 @@ const App = () => {
               clearAll={clearAll}
             />
             <Grid container spacing={3}>
+              {" "}
+              {/* container because here we have two btns: go back or continue */}
               <Grid
                 item
                 xs={teams.length >= 2 ? 6 : 12}
