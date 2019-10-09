@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddItems = props => {
+const AddItems = ({ category, label, placeholder, handleInputSubmit }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = e => {
@@ -24,14 +24,12 @@ const AddItems = props => {
 
     if (inputValue) {
       // to prevent adding empty values
-      props.handleInputSubmit(id, inputValue);
+      handleInputSubmit(category, inputValue);
       setInputValue("");
     }
   };
 
   const classes = useStyles();
-
-  const { id, label, placeholder } = props;
 
   return (
     <Grid
@@ -42,7 +40,7 @@ const AddItems = props => {
     >
       <Grid xs={9} item style={{ paddingRight: "16px" }}>
         <TextField
-          id={id}
+          category={category}
           label={label}
           placeholder={placeholder}
           value={inputValue}

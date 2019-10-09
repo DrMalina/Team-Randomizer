@@ -34,7 +34,7 @@ const ItemsList = props => {
                 <IconButton
                   edge="end"
                   aria-label="delete"
-                  onClick={() => props.deleteItem(props.id, idx)}
+                  onClick={() => props.deleteItem(props.category, idx)}
                 >
                   <Clear />
                 </IconButton>

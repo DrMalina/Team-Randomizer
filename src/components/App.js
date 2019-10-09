@@ -44,26 +44,26 @@ const App = () => {
     setStep(step - 1);
   };
 
-  const handleInputSubmit = (id, element) => {
-    if (id === "userInput") {
+  const handleInputSubmit = (category, element) => {
+    if (category === "userInput") {
       setUser([...users, element]);
-    } else if (id === "teamInput") {
+    } else if (category === "teamInput") {
       setTeam([...teams, element]);
     }
   };
 
-  const deleteItem = (id, index) => {
-    if (id === "users") {
+  const deleteItem = (category, index) => {
+    if (category === "users") {
       setUser(users.filter((user, idx) => idx !== index));
-    } else if (id === "teams") {
+    } else if (category === "teams") {
       setTeam(teams.filter((team, idx) => idx !== index));
     }
   };
 
-  const clearAll = id => {
-    if (id === "users") {
+  const clearAll = category => {
+    if (category === "users") {
       setUser([]);
-    } else if (id === "teams") {
+    } else if (category === "teams") {
       setTeam([]);
     }
   };
@@ -87,12 +87,12 @@ const App = () => {
           <>
             <AddItems
               handleInputSubmit={handleInputSubmit}
-              id="userInput"
+              category="userInput"
               label="Add Player"
               placeholder="Type a name of a user"
             />
             <ItemsList
-              id="users"
+              category="users"
               items={users}
               deleteItem={deleteItem}
               clearAll={clearAll}
@@ -106,12 +106,12 @@ const App = () => {
           <>
             <AddItems
               handleInputSubmit={handleInputSubmit}
-              id="teamInput"
+              category="teamInput"
               label="Add Team"
               placeholder="Type a name of a team"
             />
             <ItemsList
-              id="teams"
+              category="teams"
               items={teams}
               deleteItem={deleteItem}
               clearAll={clearAll}
@@ -145,6 +145,9 @@ const App = () => {
         return (
           <ResultList users={users} teams={teams} onPrevClick={prevStep} />
         );
+      default: {
+        return <StartingScreen />;
+      }
     }
   };
 
