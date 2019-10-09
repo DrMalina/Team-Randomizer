@@ -12,8 +12,9 @@ const shuffle = array => {
 
 //Helper fn to match user and random team to create a pair
 const createPair = (usersArray, teamsArray) => {
-  const users = shuffle(usersArray);
-  const teams = shuffle(teamsArray);
+  // array of objects
+  const users = shuffle(usersArray.map(element => element.user));
+  const teams = shuffle(teamsArray.map(element => element.team));
 
   let results = {};
 
@@ -43,7 +44,7 @@ const createPair = (usersArray, teamsArray) => {
         teams[Math.floor(Math.random() * (teamsLength - 1) + 0)];
     }
 
-    // For instance: 7 users, 6 teams will result in only 1 team being repeated
+    // For instance: 7 users and 6 teams will result in only 1 team being repeated
   }
   return results; //e.g. {userA: teamC, userB: teamA...}
 };

@@ -13,7 +13,7 @@ const ItemsList = props => {
   const renderClearBtn = () => {
     if (props.items.length > 1) {
       return (
-        <ListItem button onClick={() => props.clearAll(props.id)}>
+        <ListItem button onClick={() => props.clearAll(props.category)}>
           <ListItemText
             primary="Clear All"
             style={{ textAlign: "center", textTransform: "uppercase" }}
@@ -28,8 +28,12 @@ const ItemsList = props => {
       <List style={{ width: "90%", marginTop: "16px", marginBottom: "16px" }}>
         <Paper>
           {props.items.map((element, idx) => (
-            <ListItem key={idx} style={{ padding: "16px" }} divider>
-              <ListItemText primary={element} />
+            <ListItem key={element.id} style={{ padding: "16px" }} divider>
+              <ListItemText
+                primary={
+                  props.category === "teams" ? element["team"] : element["user"]
+                }
+              />
               <ListItemSecondaryAction>
                 <IconButton
                   edge="end"

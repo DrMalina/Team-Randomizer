@@ -26,14 +26,14 @@ const App = () => {
   const [step, setStep] = useState(1);
   const [users, setUser] = useState([]);
   const [teams, setTeam] = useState([
-    "FC Barcelona",
-    "Real Madrid",
-    "Liverpool",
-    "Manchester United",
-    "Manchester City",
-    "FC Bayern",
-    "Juventus",
-    "PSG"
+    { team: "FC Barcelona", id: 1 },
+    { team: "Real Madrid", id: 2 },
+    { team: "Liverpool", id: 3 },
+    { team: "Manchester United", id: 4 },
+    { team: "Manchester City", id: 5 },
+    { team: "FC Bayern", id: 6 },
+    { team: "Juventus", id: 7 },
+    { team: "PSG", id: 8 }
   ]);
 
   const nextStep = () => {
@@ -46,9 +46,15 @@ const App = () => {
 
   const handleInputSubmit = (category, element) => {
     if (category === "userInput") {
-      setUser([...users, element]);
+      setUser([
+        ...users,
+        { user: element, id: `${element.replace(/\s/g, "")}-${Date.now()}` }
+      ]);
     } else if (category === "teamInput") {
-      setTeam([...teams, element]);
+      setTeam([
+        ...teams,
+        { team: element, id: `${element.replace(/\s/g, "")}-${Date.now()}` }
+      ]);
     }
   };
 
